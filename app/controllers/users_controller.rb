@@ -40,10 +40,10 @@ class UsersController < ApplicationController
   def destroy
     begin
       @user.destroy
+      flash[:success] = "User deleted"
     rescue
       flash[:error] = "Could not delete user: #{@user.name}"
     end
-    flash[:success] = "User deleted"
 
     redirect_to users_path
   end

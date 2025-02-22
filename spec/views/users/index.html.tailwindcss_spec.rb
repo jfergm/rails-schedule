@@ -21,7 +21,7 @@ RSpec.describe "users/index.html.tailwindcss", type: :view do
       expect(page).to have_selector("tbody tr", count: 1)
     end
 
-    it 'user: My name should have show, edit, delete links' do
+    it 'user: "My name" should have show, edit, delete links' do
       visit users_path
 
       expect(page).to have_link('Show', href: user_path(1))

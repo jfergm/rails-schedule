@@ -67,7 +67,7 @@ RSpec.describe "Users", type: :request do
       post '/users', params: { user: { name: "", email: nil } }
 
       expect(response).to render_template :new
-      expect(flash[:notice]).to eq nil
+      expect(flash[:success]).to eq nil
     end
   end
 
