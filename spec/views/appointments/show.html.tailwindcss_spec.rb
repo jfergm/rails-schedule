@@ -27,6 +27,8 @@ RSpec.describe "appointments/show.html.tailwindcss", type: :view do
   it "shows appointment information" do
     visit appointment_path(appointment)
 
+    expect(page).to have_link("Change status", href: status_appointment_path(appointment))
+
     expect(page).to have_content appointment.code
     expect(page).to have_content appointment.duration
     expect(page).to have_content appointment.status

@@ -19,7 +19,6 @@ RSpec.describe Appointment, type: :model do
       client: c,
       location: l,
       scheduled_at: Time.gm(2025, 02, 20, 14, 30),
-      status: 0,
       duration: 30,
       notes: "Appointment notes"
     )

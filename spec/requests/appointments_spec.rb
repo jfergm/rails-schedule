@@ -19,7 +19,6 @@ RSpec.describe "Appointments", type: :request do
       client: c,
       location: l,
       scheduled_at: Time.gm(2025, 02, 20, 14, 30),
-      status: 0,
       duration: 30,
       notes: "Appointment notes"
     )
@@ -89,7 +88,6 @@ RSpec.describe "Appointments", type: :request do
           client_id: 321,
           location_id: 213,
           scheduled_at: Time.current,
-          status: 0,
           duration: 30
         }
       }
@@ -127,6 +125,35 @@ RSpec.describe "Appointments", type: :request do
       delete "/appointments/#{appointment.id}"
 
       expect(flash[:success]).to eq "Appointment deleted"
+    end
+  end
+
+  describe "GET /appointments/:id/change_status" do
+    it "returns http success" do
+      get "/appointments/#{appointment.id}/status"
+      expect(response).to have_http_status(:success)
+    end
+
+    it "renders change_status template" do
+      get "/appointments/#{appointment.id}/status"
+
+      expect(response).to render_template :edit_status
+    end
+  end
+
+  describe "PATCH /appointments/:id/change_status" do
+    it "Changes the appointment status to finished" do
+      patch "/appointments/#{appointment.id}/status", params: { appointment: { status: :finished } }
+
+      expect(response).to redirect_to appointment_path(appointment)
+      expect(flash[:success]).to eq "Appointment status changed"
+    end
+
+    it "Changes the appointment status to cancelled" do
+      patch "/appointments/#{appointment.id}/status", params: { appointment: { status: :cancelled } }
+
+      expect(response).to redirect_to appointment_path(appointment)
+      expect(flash[:success]).to eq "Appointment status changed"
     end
   end
 end

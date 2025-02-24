@@ -1,4 +1,5 @@
 class Appointment < ApplicationRecord
+  enum :status, [ :scheduled, :finished, :cancelled ], default: :scheduled
   belongs_to :user
   belongs_to :client
   belongs_to :location
@@ -10,6 +11,7 @@ class Appointment < ApplicationRecord
   validates_uniqueness_of :user, scope: :scheduled_at, message: "User already with an appointment in the scheduled date"
 
   before_validation :set_code
+
   private
   LETTERS = ("A".."Z").to_a
 

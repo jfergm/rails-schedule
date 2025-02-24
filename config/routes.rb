@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   resources :users
   resources :clients
   resources :locations
-  resources :appointments
+  resources :appointments do
+    get "/status", on: :member, to: "appointments#edit_status"
+    patch "/status", on: :member, to: "appointments#update_status"
+    put "/status", on: :member, to: "appointments#update_status"
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
