@@ -94,7 +94,7 @@ RSpec.describe Appointment, type: :model do
         email: "fiveofive@email.com",
       )
       appointment.valid?
-      expect(appointment.errors[:client].first).to eq "Client already with an appointment"
+      expect(appointment.errors[:client].first).to eq "Client already with an appointment in the scheduled date"
       expect(appointment.errors[:user]).to be_empty
       expect(appointment).not_to be_valid
     end
@@ -110,7 +110,7 @@ RSpec.describe Appointment, type: :model do
       )
       appointment.valid?
       expect(appointment.errors[:client]).to be_empty
-      expect(appointment.errors[:user].first).to eq "User already with an appointment"
+      expect(appointment.errors[:user].first).to eq "User already with an appointment in the scheduled date"
       expect(appointment).not_to be_valid
     end
   end

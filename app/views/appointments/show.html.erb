@@ -1,0 +1,36 @@
+<div>
+  <h1 class="font-bold text-4xl">Appointment</h1>
+
+  <div class="my-4 border rounded-md p-2 border-gray-300">
+    <p class="text-2xl m-1">
+      <label class="text-gray-500">Code:</label>&nbsp;
+      <span class="font-bold"><%= @appointment.code %></span>
+    </p>
+    <p class="text-2xl m-1">
+      <label class="text-gray-500">User:</label>&nbsp;
+      <span class="font-bold"><%= @appointment.user.name %></span>
+    </p>
+    <p class="text-2xl m-1">
+      <label class="text-gray-500">Client:</label>&nbsp;
+      <span class="font-bold"><%= @appointment.client.name %></span>
+    </p>
+    <p class="text-2xl m-1">
+      <label class="text-gray-500">Location:</label>&nbsp;
+      <span class="font-bold">
+        <%= @appointment.location.name %>, <%= @appointment.location.address%>, <%= @appointment.location.postal_code%>
+      </span>
+    </p>
+    <p class="text-2xl m-1">
+      <label class="text-gray-500">Scheduled at:</label>&nbsp;
+      <span class="font-bold"><%= @appointment.scheduled_at.strftime("%Y-%m-%d %H:%M:%S") %></span>
+    </p>
+    <p class="text-2xl m-1">
+      <label class="text-gray-500">Duration:</label>&nbsp;
+      <span class="font-bold"><%= @appointment.duration %> min.</span>
+    </p>
+    <p class="text-2xl m-1">
+      <label class="text-gray-500">Notes:</label>&nbsp;
+      <span class="font-bold"><%= @appointment.notes %></span>
+    </p>
+  </div>
+</div>

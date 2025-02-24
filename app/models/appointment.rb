@@ -6,8 +6,8 @@ class Appointment < ApplicationRecord
   validates :user, :client, :location, :scheduled_at, presence: true
   validates :code, uniqueness: true
 
-  validates_uniqueness_of :client, scope: :scheduled_at, message: "Client already with an appointment"
-  validates_uniqueness_of :user, scope: :scheduled_at, message: "User already with an appointment"
+  validates_uniqueness_of :client, scope: :scheduled_at, message: "Client already with an appointment in the scheduled date"
+  validates_uniqueness_of :user, scope: :scheduled_at, message: "User already with an appointment in the scheduled date"
 
   before_validation :set_code
   private
