@@ -1,0 +1,2 @@
+<%# locals: (text:, model:, border: true) -%>
+<%= button_to text, model, method: :delete, data: { turbo_confirm: "Are you sure?" }, class:"#{'border' if false} rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 hover:text-white"%>

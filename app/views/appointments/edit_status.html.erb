@@ -1,0 +1,14 @@
+<div>
+  <h1 class="font-bold text-4xl">Edit appointment</h1>
+  <%= form_with model: @appointment, method: :patch, url: status_appointment_path(@appointment), local: true, data: { turbo: false } do |form| %>
+    <div class="my-3">
+      <%= form.label :status, class: "font-medium text-gray-900" %>
+      <%= form.select :status, Appointment.statuses.keys, required: true, prompt:"Select status", selected: @appointment.status %>
+      <div class="block">
+        <%= render partial: "shared/error", locals: { errors: @appointment.errors[:user]} %>
+      </div>
+    </div>
+    <%= form.submit "Change status", class: "px-3 py-1 border border-gray-300 rounded-md hover:bg-gray-700 hover:text-white" %>
+  <% end %>
+</div>
+

@@ -1,0 +1,26 @@
+  <%= form_with model: @user, local: true, data: {turbo: false} do |form| %>
+    <div class="my-2">
+      <%= form.label :name, class: "block font-medium text-gray-900" %>
+      <%= form.text_field :name, required: true, class: "mt-1 block px-3 py-1 rounded-md border border-gray-300"%>
+      <div class="block">
+        <%= render partial: "shared/error", locals: { errors: @user.errors[:name]}%>
+      </div>
+    </div>
+    <div class="my-2">
+      <%= form.label :last_name, class: "block font-medium text-gray-900" %>
+      <%= form.text_field :last_name, class: "mt-1 block px-3 py-1 rounded-md border border-gray-300"%>
+      <div class="block">
+        <%= render partial: "shared/error", locals: { errors: @user.errors[:last_name]}%>
+      </div>
+    </div>
+    <div class="my-2">
+      <%= form.label :email, class: "block font-medium text-gray-900" %>
+      <%= form.email_field :email, required: true, class: "mt-1 block px-3 py-1 rounded-md border border-gray-300"%>
+      <div class="block">
+        <%= render partial: "shared/error", locals: { errors: @user.errors[:email]}%>
+      </div>
+    </div>
+    <div class="my-2">
+      <%= form.submit class: "px-3 py-1 border border-gray-300 rounded-md hover:bg-gray-700 hover:text-white" %>
+    </div>
+  <% end %>

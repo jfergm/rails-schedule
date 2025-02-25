@@ -1,0 +1,11 @@
+<nav class="bg-gray-800">
+  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <div class="flex h-16 items-center">
+      <%= render partial: "layouts/components/nav-link", locals: { text: "Home", url: root_path } %>
+      <%= render partial: "layouts/components/nav-link", locals: { text: "Users", url: users_path } %>
+      <%= render partial: "layouts/components/nav-link", locals: { text: "Clients", url: clients_path } %>
+      <%= render partial: "layouts/components/nav-link", locals: { text: "Locations", url: locations_path } %>
+      <%= render partial: "layouts/components/nav-link", locals: { text: "Appointments", url: appointments_path } %>
+    </div>
+  </div>
+</nav>

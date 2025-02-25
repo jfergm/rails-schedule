@@ -1,0 +1,38 @@
+<div class="w-full flex justify-between items-center">
+  <h1 class="font-bold text-4xl">Appointments</h1>
+  <%= render partial: "shared/link", locals: { text: "Add", url: new_appointment_path } %>
+</div>
+<div class="my-5 border p-3 rounded-md border-gray-400">
+  <table class="w-full text-left" id="appointments-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>User</th>
+        <th>Client</th>
+        <th>Location</th>
+        <th>Scheduled at</th>
+        <th>Code</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @appointments.each do |appointment| %>
+        <tr id="row-#{id}" class="">
+          <td><%= appointment.id %></td>
+          <td><%= appointment.user.name %></td>
+          <td><%= appointment.client.name %></td>
+          <td><%= appointment.location.name %></td>
+          <td><%= appointment.scheduled_at.strftime("%Y-%m-%d %H:%M") %></td>
+          <td><%= appointment.code %></td>
+          <td>
+            <div class="flex">
+              <%= render partial: "shared/link", locals: { text: "Show", url: appointment_path(appointment), border: false } %>
+              <%= render partial: "shared/link", locals: { text: "Edit", url: edit_appointment_path(appointment), border: false } %>
+              <%= render partial: "shared/delete-button", locals: { text: "Delete", model: appointment, border: false}%>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

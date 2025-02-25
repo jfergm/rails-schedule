@@ -1,0 +1,47 @@
+<%= form_with model: @location, local: true, data: { turbo: false } do |form| %>
+  <div class="my-2">
+    <%= form.label :name, class: "block font-medium text-gray-900" %>
+    <%= form.text_field :name, required: true, class: "mt-1 block px-3 py-1 rounded-md border border-gray-300"%>
+    <div class="block">
+      <%= render partial: "shared/error", locals: { errors: @location.errors[:name]}%>
+    </div>
+  </div>
+  <div class="my-2">
+    <%= form.label :address, class: "block font-medium text-gray-900" %>
+    <%= form.text_field :address, required: true, class: "mt-1 block px-3 py-1 rounded-md border border-gray-300"%>
+    <div class="block">
+      <%= render partial: "shared/error", locals: { errors: @location.errors[:address]}%>
+    </div>
+  </div>
+  <div class="my-2">
+    <%= form.label :postal_code, class: "block font-medium text-gray-900" %>
+    <%= form.text_field :postal_code, required: true, class: "mt-1 block px-3 py-1 rounded-md border border-gray-300"%>
+    <div class="block">
+      <%= render partial: "shared/error", locals: { errors: @location.errors[:postal_code]}%>
+    </div>
+  </div>
+  <div class="my-2">
+    <%= form.label :city, class: "block font-medium text-gray-900" %>
+    <%= form.text_field :city, required: true, class: "mt-1 block px-3 py-1 rounded-md border border-gray-300"%>
+    <div class="block">
+      <%= render partial: "shared/error", locals: { errors: @location.errors[:city]}%>
+    </div>
+  </div>
+  <div class="my-2">
+    <%= form.label :state, class: "block font-medium text-gray-900" %>
+    <%= form.text_field :state, required: true, class: "mt-1 block px-3 py-1 rounded-md border border-gray-300"%>
+    <div class="block">
+      <%= render partial: "shared/error", locals: { errors: @location.errors[:state]}%>
+    </div>
+  </div>
+  <div class="my-2">
+    <%= form.label :notes, class: "block font-medium text-gray-900" %>
+    <%= form.text_area :notes, class: "mt-1 block px-3 py-1 rounded-md border border-gray-300"%>
+    <div class="block">
+      <%= render partial: "shared/error", locals: { errors: @location.errors[:notes]}%>
+    </div>
+  </div>
+  <div class="my-2">
+    <%= form.submit class: "px-3 py-1 border border-gray-300 rounded-md hover:bg-gray-700 hover:text-white" %>
+  </div>
+<% end %>

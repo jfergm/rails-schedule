@@ -1,0 +1,34 @@
+<div class="w-full flex justify-between items-center">
+  <h1 class="font-bold text-4xl">Clients</h1>
+  <%= render partial: "shared/link", locals: { text: "Add", url: new_client_path } %>
+</div>
+<div class="my-5 border p-3 rounded-md border-gray-400">
+  <table class="w-full text-left" id="clients-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone number</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @clients.each do |client| %>
+        <tr id="row-#{id}" class="">
+          <td><%= client.id %></td>
+          <td><%= client.name %></td>
+          <td><%= client.email %></td>
+          <td><%= client.phone_number %></td>
+          <td>
+            <div class="flex">
+              <%= render partial: "shared/link", locals: { text: "Show", url: client_path(client), border: false } %>
+              <%= render partial: "shared/link", locals: { text: "Edit", url: edit_client_path(client), border: false } %>
+              <%= render partial: "shared/delete-button", locals: { text: "Delete", model: client, border: false}%>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

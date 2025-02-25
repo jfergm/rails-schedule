@@ -1,0 +1,19 @@
+<%# locals: (model:) -%>
+<div>
+  <p class="my-1">
+    <span>Today: </span>
+    <span class="font-bold"><%= pluralize(model.appointments.today.count, "appointment") %></span>
+  </p>
+  <p class="my-1">
+    <span>Past: </span>
+    <span class="font-bold"><%= pluralize(model.appointments.past.count, "appointment") %></span>
+  </p>
+  <p class="my-1">
+    <span>Upcoming: </span>
+    <span class="font-bold"><%= pluralize(model.appointments.upcoming.count, "appointment") %></span>
+  </p>
+  <p class="my-1">
+    <span>Total: </span>
+    <span class="font-bold"><%= pluralize(model.appointments.count, "appointment") %></span>
+  </p>
+</div>
