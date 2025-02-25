@@ -1,24 +1,20 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##
+##
 
-Things you may want to cover:
+### Run locally
+###### Ruby version ``3.4.2``
+###### Setup database ``bin/rails db:migrate``
+###### Start server ``.bin/dev``
+###### run tests ``rspec``
 
-* Ruby version
+##
+##
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Run with docker
+##### Generate the key rails master key
+- ###### Delete `config/credentials.yml.enc`
+- ###### Run ``EDITOR=nano ./bin/rails credentials:edit``
+- ###### Copy generated `/config/master.key` content and paste in `RAILS_MASTER_KEY > compose.yml` or put in the `.env` file with the key `RAILS_MASTER_KEY`
+##### Run ``docker compose up -d``
