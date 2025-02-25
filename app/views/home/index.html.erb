@@ -1,3 +1,44 @@
-<div>
-  <h1 class="text-3xl font-bold">HOME</h1>
+<div class="flex w-full py-3 flex-wrap mb-5">
+  <%= render partial: "shared/appointment_count", locals: {title: "Total Appointments", count: Appointment.count } %>
+  <%= render partial: "shared/appointment_count", locals: {title: "Today Appointments", count: Appointment.today.count } %>
+  <%= render partial: "shared/appointment_count", locals: {title: "Past Appointments", count: Appointment.past.count } %>
+  <%= render partial: "shared/appointment_count", locals: {title: "Upcoming Appointments", count: Appointment.upcoming.count } %>
+  <%= render partial: "shared/appointment_count", locals: {title: "Total unique locations with appointments", count: Appointment.pluck(:location_id).uniq.count} %>
+  <%= render partial: "shared/appointment_count", locals: {title: "Total unique users with appointments", count:Appointment.pluck(:user_id).uniq.count} %>
+  <%= render partial: "shared/appointment_count", locals: {title: "Total unique clients with appointments", count:Appointment.pluck(:client_id).uniq.count} %>
+</div>
+<div class="">
+  <h2 class="text-2xl font-bold">Appointments by locations</h2>
+  <div class="flex w-full py-3 flex-wrap mb-5">
+    <% Location.all.each do |location| %>
+      <div class="w-sm border rounded-md border-gray-300 p-3 m-2">
+        <p class="font-bold text-xl"><%= location.name %></p>
+        <%= render partial: "shared/appointment_model_count", locals: { model: location }%>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="">
+  <h2 class="text-2xl font-bold">Appointments by users</h2>
+  <div class="flex w-full py-3 flex-wrap mb-5">
+    <% User.all.each do |user| %>
+      <div class="w-sm border rounded-md border-gray-300 p-3 m-2">
+        <p class="font-bold text-xl"><%= user.name %></p>
+        <%= render partial: "shared/appointment_model_count", locals: { model: user }%>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="">
+  <h2 class="text-2xl font-bold">Appointments by clients</h2>
+  <div class="flex w-full py-3 flex-wrap mb-5">
+    <% Client.all.each do |client| %>
+      <div class="w-sm border rounded-md border-gray-300 p-3 m-2">
+        <p class="font-bold text-xl"><%= client.name %></p>
+        <%= render partial: "shared/appointment_model_count", locals: { model: client }%>
+      </div>
+    <% end %>
+  </div>
 </div>
