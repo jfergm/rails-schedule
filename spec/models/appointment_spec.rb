@@ -18,7 +18,7 @@ RSpec.describe Appointment, type: :model do
       user: u,
       client: c,
       location: l,
-      scheduled_at: Time.gm(2025, 02, 20, 14, 30),
+      scheduled_at: Time.local(2025, 02, 20, 14, 30), # use local time (Mexico city)
       duration: 30,
       notes: "Appointment notes"
     )
