@@ -19,8 +19,8 @@
       <% @appointments.each do |appointment| %>
         <tr id="row-#{id}" class="">
           <td><%= appointment.id %></td>
-          <td><%= appointment.user.name %></td>
-          <td><%= appointment.client.name %></td>
+          <td><%= appointment.user.full_name %></td>
+          <td><%= appointment.client.full_name %></td>
           <td><%= appointment.location.name %></td>
           <td><%= appointment.scheduled_at.strftime("%Y-%m-%d %H:%M") %></td>
           <td><%= appointment.code %></td>

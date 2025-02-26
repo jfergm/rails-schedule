@@ -1,14 +1,14 @@
 <%= form_with model: @appointment, local: true, data: { turbo: false } do |form| %>
   <div class="my-3">
     <%= form.label :user_id, class: "font-medium text-gray-900" %>
-    <%= form.select :user_id, User.pluck(:name, :id), prompt: "Select user...", required: true %>
+    <%= form.select :user_id, User.all.collect {|u| [u.full_name, u.id]}, prompt: "Select user...", required: true %>
     <div class="block">
       <%= render partial: "shared/error", locals: { errors: @appointment.errors[:user]} %>
     </div>
   </div>
   <div class="my-3">
     <%= form.label :client_id, class: "font-medium text-gray-900" %>
-    <%= form.select :client_id, Client.pluck(:name, :id), prompt: "Select client...", required: true %>
+    <%= form.select :client_id, Client.all.collect {|c| [c.full_name, c.id]}, prompt: "Select client...", required: true %>
     <div class="block">
     <%= render partial: "shared/error", locals: { errors: @appointment.errors[:client]} %>
     </div>
