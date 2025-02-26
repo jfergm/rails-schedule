@@ -24,7 +24,7 @@
   <div class="flex w-full py-3 flex-wrap mb-5">
     <% User.all.each do |user| %>
       <div class="w-sm border rounded-md border-gray-300 p-3 m-2">
-        <p class="font-bold text-xl"><%= user.name %></p>
+        <p class="font-bold text-xl"><%= user.full_name %></p>
         <%= render partial: "shared/appointment_model_count", locals: { model: user }%>
       </div>
     <% end %>
@@ -36,7 +36,7 @@
   <div class="flex w-full py-3 flex-wrap mb-5">
     <% Client.all.each do |client| %>
       <div class="w-sm border rounded-md border-gray-300 p-3 m-2">
-        <p class="font-bold text-xl"><%= client.name %></p>
+        <p class="font-bold text-xl"><%= client.full_name %></p>
         <%= render partial: "shared/appointment_model_count", locals: { model: client }%>
       </div>
     <% end %>
