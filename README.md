@@ -7,6 +7,12 @@
 ###### Ruby version ``3.4.2``
 ###### Setup database ``bin/rails db:migrate``
 ###### Start server ``.bin/dev``
+
+##
+##
+
+#### Tests
+###### Run ``EDITOR=nano ./bin/rails credentials:edit``
 ###### run tests ``rspec``
 
 ##
