@@ -14,9 +14,9 @@ class Appointment < ApplicationRecord
   before_validation :set_code
 
   scope :between, ->(start_date:, end_date:) { where("scheduled_at between ? AND ?", start_date, end_date) }
-  scope :today, -> { between(start_date: Time.current.strftime("%Y-%m-%d 00:00:00"), end_date: Time.current.strftime("%Y-%m-%d 23:59:59")) }
-  scope :past, -> { where("scheduled_at < ?", Time.current.strftime("%Y-%m-%d 00:00:00")) }
-  scope :upcoming, -> { where("scheduled_at > ?", Time.current.strftime("%Y-%m-%d 23:59:59")) }
+  scope :today, -> { between(start_date: Time.now.beginning_of_day, end_date: Time.now.end_of_day) }
+  scope :past, -> { where("scheduled_at < ?", Time.now.beginning_of_day) }
+  scope :upcoming, -> { where("scheduled_at > ?", Time.now.end_of_day) }
 
   private
   def set_code
