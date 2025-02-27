@@ -1,7 +1,7 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: %i[show edit update destroy edit_status update_status]
   def index
-    @appointments = Appointment.all
+    @appointments = Appointment.includes(:user, :client, :location)
   end
 
   def show
