@@ -10,7 +10,7 @@
 <div class="">
   <h2 class="text-2xl font-bold">Appointments by locations</h2>
   <div class="flex w-full py-3 flex-wrap mb-5">
-    <% @locations.each do |location| %>
+    <% @locations.find_each do |location| %>
       <div class="w-sm border rounded-md border-gray-300 p-3 m-2">
         <p class="font-bold text-xl"><%= location.name %></p>
         <%= render partial: "shared/appointment_model_count", locals: { model: location }%>
@@ -22,7 +22,7 @@
 <div class="">
   <h2 class="text-2xl font-bold">Appointments by users</h2>
   <div class="flex w-full py-3 flex-wrap mb-5">
-    <% @users.each do |user| %>
+    <% @users.find_each do |user| %>
       <div class="w-sm border rounded-md border-gray-300 p-3 m-2">
         <p class="font-bold text-xl"><%= user.full_name %></p>
         <%= render partial: "shared/appointment_model_count", locals: { model: user }%>
@@ -34,7 +34,7 @@
 <div class="">
   <h2 class="text-2xl font-bold">Appointments by clients</h2>
   <div class="flex w-full py-3 flex-wrap mb-5">
-    <% @clients.each do |client| %>
+    <% @clients.find_each do |client| %>
       <div class="w-sm border rounded-md border-gray-300 p-3 m-2">
         <p class="font-bold text-xl"><%= client.full_name %></p>
         <%= render partial: "shared/appointment_model_count", locals: { model: client }%>

@@ -1,8 +1,8 @@
 class HomeController < ApplicationController
   def index
-    @appointments = Appointment.all
-    @users = User.all
-    @clients = Client.all
-    @locations = Location.all
+    @appointments = Appointment
+    @users = User
+    @clients = Client
+    @locations = Location
   end
 end
