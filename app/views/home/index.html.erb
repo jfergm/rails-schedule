@@ -1,11 +1,11 @@
 <div class="flex w-full py-3 flex-wrap mb-5">
-  <%= render partial: "shared/appointment_count", locals: {title: "Total Appointments", count: @appointments.count } %>
-  <%= render partial: "shared/appointment_count", locals: {title: "Today Appointments", count: @appointments.today.count } %>
-  <%= render partial: "shared/appointment_count", locals: {title: "Past Appointments", count: @appointments.past.count } %>
-  <%= render partial: "shared/appointment_count", locals: {title: "Upcoming Appointments", count: @appointments.upcoming.count } %>
-  <%= render partial: "shared/appointment_count", locals: {title: "Total unique locations with appointments", count: @appointments.pluck(:location_id).uniq.count} %>
-  <%= render partial: "shared/appointment_count", locals: {title: "Total unique users with appointments", count: @appointments.pluck(:user_id).uniq.count} %>
-  <%= render partial: "shared/appointment_count", locals: {title: "Total unique clients with appointments", count: @appointments.pluck(:client_id).uniq.count} %>
+  <%= render partial: "shared/appointment_count", locals: {title: "Total Appointments", count: @appointments.all.size } %>
+  <%= render partial: "shared/appointment_count", locals: {title: "Today Appointments", count: @appointments.today.size } %>
+  <%= render partial: "shared/appointment_count", locals: {title: "Past Appointments", count: @appointments.past.size } %>
+  <%= render partial: "shared/appointment_count", locals: {title: "Upcoming Appointments", count: @appointments.upcoming.size } %>
+  <%= render partial: "shared/appointment_count", locals: {title: "Total unique locations with appointments", count: @appointments.pluck(:location_id).uniq.size} %>
+  <%= render partial: "shared/appointment_count", locals: {title: "Total unique users with appointments", count: @appointments.pluck(:user_id).uniq.size} %>
+  <%= render partial: "shared/appointment_count", locals: {title: "Total unique clients with appointments", count: @appointments.pluck(:client_id).uniq.size} %>
 </div>
 <div class="">
   <h2 class="text-2xl font-bold">Appointments by locations</h2>
