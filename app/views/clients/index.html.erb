@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @clients.each do |client| %>
+      <% @clients.find_each do |client| %>
         <tr id="row-#{id}" class="">
           <td><%= client.id %></td>
           <td><%= client.full_name %></td>

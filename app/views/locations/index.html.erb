@@ -16,7 +16,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @locations.each do |location| %>
+      <% @locations.find_each do |location| %>
         <tr id="row-#{id}" class="">
           <td><%= location.id %></td>
           <td><%= location.name %></td>
