@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Appointment, type: :model do
   let(:appointment) do
-    u = User.create(id: 7, name: 'User', last_name: 'Seven', email: 'userone@email.com')
+    u = User.create(id: 7, name: 'User', last_name: 'Seven', email: 'useronex@email.com', password: "123qwe")
     c = Client.create(id: 23, name: 'Client', last_name: 'TwentyThree', email: 'clientone@email.com', phone_number: "1234567890")
     l = Location.create(
       id: 134,
