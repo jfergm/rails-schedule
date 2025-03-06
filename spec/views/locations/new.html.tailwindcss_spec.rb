@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe "locations/new.html.tailwindcss", type: :view do
+  include AuthHelper
+
+  before(:each) do
+    sign_in_as(create(:user))
+  end
   it "shows new location form" do
     visit new_location_path
 

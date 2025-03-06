@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe "appointments/new.html.tailwindcss", type: :view do
+  include AuthHelper
+
+  before(:each) do
+    sign_in_as(create(:user))
+  end
   it "" do
     visit new_appointment_path
 

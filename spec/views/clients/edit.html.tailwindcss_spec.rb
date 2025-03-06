@@ -1,8 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe "clients/edit.html.tailwindcss", type: :view do
-  let(:client) { Client.create(name: "Jhon", last_name: "Doe", email: "client_email@email.com", phone_number: "1234567890") }
+  include AuthHelper
 
+  let(:client) { create(:client) }
+
+  before(:each) do
+    sign_in_as(create(:user))
+  end
   it "have the edit client form filled" do
     visit edit_client_path(client)
 

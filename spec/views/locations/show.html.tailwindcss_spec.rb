@@ -1,15 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe "locations/show.html.tailwindcss", type: :view do
-  let(:location) do
-    Location.create(
-      name: "Main location",
-      address: "Main st 23",
-      postal_code: "00000",
-      city: "Main city",
-      state: "Main state",
-      notes: "Notes..."
-    )
+  include AuthHelper
+
+  let(:location) { create(:location) }
+  before(:each) do
+    sign_in_as(create(:user))
   end
   it "shows location info" do
     visit location_path(location)

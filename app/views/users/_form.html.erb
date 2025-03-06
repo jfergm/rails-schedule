@@ -21,6 +21,13 @@
       </div>
     </div>
     <div class="my-2">
+      <%= form.label :password, class: "block font-medium text-gray-900" %>
+      <%= form.password_field :password, required: true, class: "mt-1 block px-3 py-1 rounded-md border border-gray-300"%>
+      <div class="block">
+        <%= render partial: "shared/error", locals: { errors: @user.errors[:password]}%>
+      </div>
+    </div>
+    <div class="my-2">
       <%= form.submit class: "px-3 py-1 border border-gray-300 rounded-md hover:bg-gray-700 hover:text-white" %>
     </div>
   <% end %>

@@ -1,8 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe "users/edit.html.tailwindcss", type: :view do
-  let(:user) { User.create(name: "Jhon", last_name: "Doe", email: "jhondoe@email.com") }
+  include AuthHelper
 
+  let(:user) { create(:user) }
+
+  before(:each) do
+    sign_in_as(user)
+  end
   it "should have the user form filled" do
     visit edit_user_path(user)
 

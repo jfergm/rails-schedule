@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe "Locations", type: :request do
+  include AuthHelper
+
   let(:location) do
     create(:location)
   end
-
-  include AuthHelper
 
   before(:each) do
     sign_in_as(create(:user))

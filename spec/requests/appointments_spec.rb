@@ -1,11 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe "Appointments", type: :request do
+  include AuthHelper
+
   let(:appointment) do
     create(:appointment)
   end
 
-  include AuthHelper
 
   before(:each) do
     sign_in_as(create(:user))

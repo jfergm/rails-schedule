@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe "locations/index.html.tailwindcss", type: :view do
+  include AuthHelper
+
+  before(:each) do
+    sign_in_as(create(:user))
+  end
   it "shows a link to add location" do
     visit locations_path
 
@@ -8,14 +13,7 @@ RSpec.describe "locations/index.html.tailwindcss", type: :view do
   end
 
   before do
-    Location.create(
-      name: "Main location",
-      address: "Main st 23",
-      postal_code: "00000",
-      city: "Main city",
-      state: "Main state",
-      notes: "Notes..."
-    )
+    create(:location)
   end
   context "locations table" do
     it "shows a location table" do

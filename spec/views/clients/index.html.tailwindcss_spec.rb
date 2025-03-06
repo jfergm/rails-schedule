@@ -1,13 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe "clients/index.html.tailwindcss", type: :view do
+  include AuthHelper
+
+  before(:each) do
+    sign_in_as(create(:user))
+  end
   it "shows a link to add client" do
     visit clients_path
 
     expect(page).to have_link('Add', href: new_client_path)
   end
 
-  before { Client.create(name: "Jhon", last_name: "Doe", email: "client_email@email.com", phone_number: "1234567890") }
+  before { create(:client) }
   context "clients table" do
     it "shows a clients table" do
       visit clients_path

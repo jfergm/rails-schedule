@@ -5,5 +5,6 @@ FactoryBot.define do
     sequence (:state) { |n| "State #{n}" }
     sequence (:postal_code) { |n| "#{n}#{n+1}#{n+2}#{n+3}" }
     name { "Place x" }
+    notes { "notes" }
   end
 end

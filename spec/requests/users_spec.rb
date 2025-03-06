@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
-  let(:user) { create(:user) }
   include AuthHelper
+
+  let(:user) { create(:user) }
 
   before(:each) do
     sign_in_as(user)
