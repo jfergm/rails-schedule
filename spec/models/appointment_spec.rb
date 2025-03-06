@@ -2,36 +2,22 @@ require 'rails_helper'
 
 RSpec.describe Appointment, type: :model do
   let(:appointment) do
-    u = User.create(id: 7, name: 'User', last_name: 'Seven', email: 'useronex@email.com', password: "123qwe")
-    c = Client.create(id: 23, name: 'Client', last_name: 'TwentyThree', email: 'clientone@email.com', phone_number: "1234567890")
-    l = Location.create(
-      id: 134,
-      name: "Place one",
-      address: "Main street 1",
-      postal_code: "99999",
-      city: "City three",
-      state: "State four",
-      notes: "The place is between the other place"
-    )
-
-    Appointment.new(
-      user: u,
-      client: c,
-      location: l,
+    build(
+      :appointment,
+      user: create(:user, id: 7),
+      client: create(:client, id: 23),
+      location: create(:location, id: 134,),
       scheduled_at: Time.local(2025, 02, 20, 14, 30), # use local time (Mexico city)
-      duration: 30,
-      notes: "Appointment notes"
     )
   end
 
   let(:appointment_2) do
-    Appointment.create(
+    create(
+      :appointment,
       user: appointment.user,
       client: appointment.client,
       location: appointment.location,
       scheduled_at: appointment.scheduled_at + (60 * 60 * 24 * 5), # plus 5 days
-      status: 0,
-      duration: appointment.duration,
     )
   end
 
@@ -86,12 +72,7 @@ RSpec.describe Appointment, type: :model do
 
     it 'when two appointments with the same client at the same time' do
       appointment.scheduled_at = appointment_2.scheduled_at
-      appointment.user = User.create(
-        id: 405,
-        name: "User",
-        last_name: "FiveOFive",
-        email: "fiveofive@email.com",
-      )
+      appointment.user = create(:user)
       appointment.valid?
       expect(appointment.errors[:client].first).to eq "Client already with an appointment in the scheduled date"
       expect(appointment.errors[:user]).to be_empty
@@ -100,13 +81,7 @@ RSpec.describe Appointment, type: :model do
 
     it 'when two appointments with the same user at the same time' do
       appointment.scheduled_at = appointment_2.scheduled_at
-      appointment.client = Client.create(
-        id: 812,
-        name: "Client",
-        last_name: "Two",
-        email: "clienttwo@email.com",
-        phone_number: "0987654321",
-      )
+      appointment.client = create(:client)
       appointment.valid?
       expect(appointment.errors[:client]).to be_empty
       expect(appointment.errors[:user].first).to eq "User already with an appointment in the scheduled date"
