@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Client, type: :model do
-  let(:client) { Client.new(name: "Jhon", last_name: "Doe", email: "john@doe.com", phone_number: "1234567890") }
+  let(:client) { build(:client) }
 
   context 'Valid' do
     it 'when all fields are present' do
@@ -34,7 +34,7 @@ RSpec.describe Client, type: :model do
       expect(client).not_to be_valid
     end
 
-    before { Client.create(name: client.name, email: client.email, phone_number: client.phone_number) }
+    before { create(:client, email: client.email, phone_number: client.phone_number) }
     it 'when email is repeated' do
       expect(client).not_to be_valid
     end
