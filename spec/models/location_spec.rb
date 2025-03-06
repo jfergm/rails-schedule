@@ -2,14 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Location, type: :model do
   let(:location) do
-    Location.new(
-      name: "Place one",
-      address: "Main street 1",
-      postal_code: "99999",
-      city: "City one",
-      state: "State one",
-      notes: "The place is between the other place"
-    )
+    build(:location)
   end
 
   context 'Valid' do
@@ -55,8 +48,8 @@ RSpec.describe Location, type: :model do
     end
 
     before do
-      Location.create(
-        name: location.name,
+      create(
+        :location,
         address: location.address,
         postal_code: location.postal_code,
         city: location.city,
