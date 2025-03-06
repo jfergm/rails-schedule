@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) { User.new(name: 'My name', last_name: 'My last name', email: 'myemail@email.com', password: "123asd") }
+  let(:user) { build(:user) }
   context 'Should be valid' do
     it 'with name, last_name, email' do
       expect(user).to be_valid
@@ -26,7 +26,7 @@ RSpec.describe User, type: :model do
       expect(user).not_to be_valid
     end
 
-    before { User.create(name: 'Name', email: user.email, password: "asdfa2123") }
+    before { create(:user, email: user.email) }
     it 'when email is already taken' do
       expect(user).not_to be_valid
     end
