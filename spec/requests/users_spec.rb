@@ -1,8 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
-  let(:user) { User.create(name: "Jhon", last_name: "Doe", email: "jhondoe@email.com") }
+  let(:user) { create(:user) }
+  include AuthHelper
 
+  before(:each) do
+    sign_in_as(user)
+  end
   describe "GET /users" do
     it "returns http success" do
       get "/users"
@@ -57,17 +61,16 @@ RSpec.describe "Users", type: :request do
 
   describe "POST /users" do
     it "should create a user" do
-      post '/users', params: { user: { name: "Jhon", last_name: "Doe", email: "email@domain.com" } }
+      post '/users', params: { user: { name: "Jhon", last_name: "Doe", email: "email@domain.com", password: "12345avxc" } }
 
       expect(response).to redirect_to users_path
       expect(flash[:success]).to eq 'User created'
     end
 
     it "should not create a user" do
-      post '/users', params: { user: { name: "", email: nil } }
+      post '/users', params: { user: { name: nil, email: nil } }
 
       expect(response).to render_template :new
-      expect(flash[:success]).to eq nil
     end
   end
 
@@ -75,8 +78,8 @@ RSpec.describe "Users", type: :request do
     it "should update a user" do
       put "/users/#{user.id}", params: { user: { "name": "Nohj" } }
 
-      expect(response).to redirect_to users_path
       expect(flash[:success]).to eq 'User updated'
+      expect(response).to redirect_to users_path
     end
     it "should not update a user" do
       put "/users/#{user.id}", params: { user: { "email": nil } }

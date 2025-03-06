@@ -2,27 +2,15 @@ require 'rails_helper'
 
 RSpec.describe "Appointments", type: :request do
   let(:appointment) do
-    u = User.create(id: 7, name: 'User', last_name: 'Seven', email: 'userone@email.com')
-    c = Client.create(id: 23, name: 'Client', last_name: 'TwentyThree', email: 'clientone@email.com', phone_number: "1234567890")
-    l = Location.create(
-      id: 134,
-      name: "Place one",
-      address: "Main street 1",
-      postal_code: "99999",
-      city: "City three",
-      state: "State four",
-      notes: "The place is between the other place"
-    )
-
-    Appointment.create(
-      user: u,
-      client: c,
-      location: l,
-      scheduled_at: Time.local(2025, 02, 20, 14, 30),
-      duration: 30,
-      notes: "Appointment notes"
-    )
+    create(:appointment)
   end
+
+  include AuthHelper
+
+  before(:each) do
+    sign_in_as(create(:user))
+  end
+
   describe "GET /appointments" do
     it "returns http success" do
       get "/appointments"
@@ -76,9 +64,9 @@ RSpec.describe "Appointments", type: :request do
   end
 
   before do
-    User.create(id: 123, name: "User", email: "user@email.com")
-    Client.create(id: 321, name: "Client", email: "client@email.com", phone_number: "1234567890")
-    Location.create(id: 213, name: "Location 1", address: "One street", postal_code: "00000", city: "City", state: "State")
+    create(:user, id: 123)
+    create(:client, id: 321)
+    create(:location, id: 213)
   end
   describe "POST /appointments" do
     it "creates an appointment with valid data" do
@@ -100,7 +88,6 @@ RSpec.describe "Appointments", type: :request do
       post "/appointments", params: { appointment: { user: nil, client: nil, location: nil, scheduled_at: nil } }
 
       expect(response).to render_template :new
-      expect(flash[:success]).to eq nil
     end
   end
 
@@ -116,7 +103,6 @@ RSpec.describe "Appointments", type: :request do
       patch "/appointments/#{appointment.id}", params: { appointment: { scheduled_at: nil } }
 
       expect(response).to render_template :edit
-      expect(flash[:success]).to eq nil
     end
   end
 

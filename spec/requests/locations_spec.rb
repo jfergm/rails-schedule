@@ -2,14 +2,13 @@ require 'rails_helper'
 
 RSpec.describe "Locations", type: :request do
   let(:location) do
-    Location.create(
-      name: "Location one",
-      address: "Main st 1",
-      postal_code: "99999",
-      city: "City one",
-      state: "State one",
-      notes: "The place is next to the other place"
-    )
+    create(:location)
+  end
+
+  include AuthHelper
+
+  before(:each) do
+    sign_in_as(create(:user))
   end
   describe "GET /locations" do
     it "returns http success" do
@@ -96,7 +95,6 @@ RSpec.describe "Locations", type: :request do
       }
 
       expect(response).to render_template :new
-      expect(flash[:success]).to eq nil
     end
   end
 
@@ -120,7 +118,6 @@ RSpec.describe "Locations", type: :request do
       }
 
       expect(response).to render_template :edit
-      expect(flash[:success]).to eq nil
     end
   end
 

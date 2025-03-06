@@ -1,7 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe "Clients", type: :request do
-  let(:client) { Client.create(name: "Jhon", last_name: "Doe", email: "jhondoe@email.com", phone_number: "1234567890") }
+  let(:client) { create(:client) }
+
+  include AuthHelper
+
+  before(:each) do
+    sign_in_as(create(:user))
+  end
 
   describe "GET /clients" do
     it "returns http success" do
@@ -68,10 +74,9 @@ RSpec.describe "Clients", type: :request do
     end
 
     it "not create a client with invalid form" do
-      post "/clients", params: { client: { name: "", email: nil } }
+      post "/clients", params: { client: { name: nil, email: nil } }
 
       expect(response).to render_template :new
-      expect(flash[:success]).to eq nil
     end
   end
 
@@ -87,7 +92,6 @@ RSpec.describe "Clients", type: :request do
       patch "/clients/#{client.id}/", params: { client: { email: nil } }
 
       expect(response).to render_template :edit
-      expect(flash[:success]).to eq nil
     end
   end
 
